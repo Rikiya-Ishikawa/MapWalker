@@ -1,33 +1,37 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InputHandler implements KeyListener {
-    private boolean left, right, up, down;
+    private final Map<Integer, Boolean> keys = new HashMap<>();
+
+
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT -> left = true;
-            case KeyEvent.VK_RIGHT -> right = true;
-            case KeyEvent.VK_UP -> up = true;
-            case KeyEvent.VK_DOWN -> down = true;
-        }
+    	
+    	//確認用
+    	System.out.println("keyPressed: " + e.getKeyCode());
+
+        keys.put(e.getKeyCode(), true);
     }
+
 
     @Override
     public void keyReleased(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT -> left = false;
-            case KeyEvent.VK_RIGHT -> right = false;
-            case KeyEvent.VK_UP -> up = false;
-            case KeyEvent.VK_DOWN -> down = false;
-        }
+    	
+    	//確認用
+    	System.out.println("keyReleased: " + e.getKeyCode());
+
+        keys.put(e.getKeyCode(), false);
     }
+
+    public boolean isPressed(int keyCode) {
+        return keys.getOrDefault(keyCode, false);
+    }
+
 
     @Override public void keyTyped(KeyEvent e) {}
 
-    public boolean isLeft() { return left; }
-    public boolean isRight() { return right; }
-    public boolean isUp() { return up; }
-    public boolean isDown() { return down; }
 }
