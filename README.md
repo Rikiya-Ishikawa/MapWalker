@@ -17,10 +17,12 @@ Java（Swing）を使って作成しているデスクトップ向け RPG 風ア
 ---
 
 ## 今後の改善予定
-- SRP（単一責任原則）違反しているクラス構造のリファクタリング
-- ゲームロジックと描画処理の分離
-- マップデータの外部ファイル化
-- キャラクターアニメーションの追加（余裕があれば）
+- 命名・可読性：Fログを修正
+- マジックナンバー地獄の解消
+- 手計算9点チェック（複雑・エラー多発）をenum TilePosition + AABB判定に変更
+- boolean gameWon（グローバル汚染）をenum GameState { PLAYING, WON, GAME_OVER }に変更
+- TARGET_FPS = 60.0, deltaTime正規化
+- Main.javaからJFrameを切離し
 
 ---
 
