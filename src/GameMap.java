@@ -53,23 +53,21 @@ public class GameMap {
 		}
 	}
 
-	// 境界や壁を判定するメソッド(アップデート2)
-	public boolean isWall(int x, int y) {
-		if (x < 0 || x >= 400 || y < 0 || y >= 400) {
-			return true;
-		}
+	// 境界や壁を判定するメソッド
+	public boolean isWall(int tileX, int tileY) {  // ← 引数名を修正
+	    if (tileX < 0 || tileX >= 8 || tileY < 0 || tileY >= 8) {  // ← 400pxではなく 8 タイルで判定
+	        return true;
+	    }
 
-		// 座標を配列のインデックス(0〜7)に変換する
-		// ここでJavaが自動的に計算してくれます
-		int col = x / TILE_SIZE;
-		int row = y / TILE_SIZE;
-
-		// 配列のその場所が 1 なら true（壁だ！）と答える
-		return map[row][col] == TILE_WALL;
+	    // 配列のその場所が 1 なら true（壁だ！）と答える
+	    return map[tileY][tileX] == TILE_WALL;  // ← row=tileY, col=tileX でそのまま使う
 	}
 
-	public boolean isGoalTile(int row, int col) {
-		return map[row][col] == TILE_GOAL;
+	public boolean isGoalTile(int tileY, int tileX) {  // ← 順序統一
+	    if (tileX < 0 || tileX >= 8 || tileY < 0 || tileY >= 8) {
+	        return false;
+	    }
+	    return map[tileY][tileX] == TILE_GOAL;
 	}
 
 }
